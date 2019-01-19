@@ -10,17 +10,6 @@
 @import "~@fortawesome/fontawesome-free/scss/solid";
 @import "~@fortawesome/fontawesome-free/scss/brands";
 
-
-/* universal */
-
-body {
-  font-family: Helvetica, "Microsoft YaHei", Arial, sans-serif;
-  font-size: 14px;
-}
-
-/* header */
-
-
 $color_shadow: rgba(42, 42, 42, 0.1);
 $color_border: #e7e7e7;
 $color_background: #fff;
@@ -28,7 +17,21 @@ $color_theme: #bf6320;
 $color_border_bottom: #e8e8e8;
 $color_footer_bg: #000;
 $color_footer_p: #c1c1c1;
+$black: #000;
 
+/* universal */
+html {
+  position: relative;
+  min-height: 100%;
+  body {
+    font-family: Helvetica, "Microsoft YaHei", Arial, sans-serif;
+    margin-bottom: 60px;
+    font-size: 14px;
+    a{color: $black;}
+  }
+}
+
+/* header */
 .navbar-static-top {
   border-color: $color_border;
   background-color: $color_background;
@@ -40,17 +43,7 @@ $color_footer_p: #c1c1c1;
   margin-top: 0;
 }
 
-/* Sticky footer styles */
-html {
-  position: relative;
-  min-height: 100%;
-}
-
-body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
-}
-
+/* footer */
 .footer {
   position: absolute;
   bottom: 0;
@@ -62,14 +55,22 @@ body {
   .container {
     padding-right: 15px;
     padding-left: 15px;
-
     p {
       margin: 19px 0;
       color:$color_footer_p;
-
       a {
         color: inherit;
       }
     }
+  }
+}
+
+/* User register page */
+.register-page {
+  img.captcha {
+    cursor: pointer;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    padding: 3px;
   }
 }
