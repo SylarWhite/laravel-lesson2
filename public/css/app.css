@@ -16136,10 +16136,6 @@ html body {
   font-size: 14px;
 }
 
-html body a {
-  color: #000;
-}
-
 /* header */
 
 .navbar-static-top {
@@ -16151,6 +16147,10 @@ html body a {
   color: #000;
   margin-bottom: 40px;
   margin-top: 0;
+}
+
+.navbar-static-top a {
+  color: #000;
 }
 
 /* footer */
