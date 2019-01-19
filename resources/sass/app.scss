@@ -1,14 +1,67 @@
-
-// Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
-
 // Variables
 @import 'variables';
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-.navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+/* universal */
+
+body {
+  font-family: Helvetica, "Microsoft YaHei", Arial, sans-serif;
+  font-size: 14px;
+}
+
+/* header */
+
+
+$color_shadow:rgba(42, 42, 42, 0.1);
+$color_border:#e7e7e7;
+$color_background:#fff;
+$color_theme: #bf6320;
+$color_border_bottom:#e8e8e8;
+$color_footer_bg:#000;
+$color_footer_p: #c1c1c1;
+
+.navbar-static-top {
+  border-color: $color_border;
+  background-color: $color_background;
+  box-shadow: 0 1px 11px 2px $color_shadow;
+  border-top: 4px solid $color_theme;
+  border-bottom: 1px solid $color_border_bottom;
+  margin-bottom: 40px;
+  margin-top: 0;
+}
+
+/* Sticky footer styles */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color:$color_footer_bg;
+
+  .container {
+    padding-right: 15px;
+    padding-left: 15px;
+
+    p {
+      margin: 19px 0;
+      color:$color_footer_p;
+
+      a {
+        color: inherit;
+      }
+    }
+  }
 }
