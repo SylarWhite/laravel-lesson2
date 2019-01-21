@@ -1,0 +1,33 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: abel
+ * Date: 2019/1/21
+ * Time: 16:20
+ */
+namespace App\Handlers;
+
+class ImageUploadHandler
+{
+    protected $allowed_ext = ['png','jpg','jpeg','gif'];
+
+    public function save($file, $folder, $file_prefix)
+    {
+        // 自定义上传文件夹
+        $folder_name = "uploads/images/$folder/".date('Ym/d',time());
+        // 加入到系统绝对路径当中
+        $upload_path = public_path().'/'.$folder_name;
+        // 获取到上传文件后缀
+        $extension = strtolower($file->getClientOriginalExtension()) ?: 'png';
+        // 重命名上传文件
+        $filename = $file_prefix.'_'.time().'_'.str_random(10).$extension;
+        // 判断是否允许上传该类型文件
+        if(! in_array($extension, $this->allowed_ext)){
+            return false;
+        }
+        // 移动上传的文件到自定义目录内
+        $file->move($upload_path,$filename);
+
+        return ['path'=>config('app.url')."/$folder_name/$filename"];
+    }
+}
