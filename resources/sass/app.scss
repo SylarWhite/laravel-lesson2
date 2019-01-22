@@ -40,7 +40,13 @@ html {
   color: $color_footer_bg;
   margin-bottom: 40px;
   margin-top: 0;
-  a{color: $black;}
+  a{
+    color: #959595;
+    &:hover{color: $black}
+  }
+  .active{
+    a{color: $black}
+  }
 }
 
 /* footer */
@@ -76,7 +82,7 @@ html {
 }
 
 /* Topic Index Page */
-.topics-index-page {
+.topics-index-page .categories-index-page {
   .topic-list {
     .nav>li>a {
       position: relative;
