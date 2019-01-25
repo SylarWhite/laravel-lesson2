@@ -8,34 +8,23 @@ class ReplyRequest extends Request
     {
         switch($this->method())
         {
-            // CREATE
             case 'POST':
-            {
-                return [
-                    // CREATE ROLES
-                ];
-            }
-            // UPDATE
             case 'PUT':
             case 'PATCH':
-            {
-                return [
-                    // UPDATE ROLES
-                ];
-            }
             case 'GET':
             case 'DELETE':
             default:
             {
-                return [];
-            };
+                return [
+                    'content'   =>  'required|min:2'
+                ];
+            }
         }
     }
 
     public function messages()
     {
         return [
-            // Validation messages
         ];
     }
 }
