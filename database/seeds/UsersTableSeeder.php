@@ -34,12 +34,17 @@ class UsersTableSeeder extends Seeder
         $user_array = $users->makeVisible(['password','remember_token'])->toArray();
 
         User::insert($user_array);
-
+        // 初始化用户角色，将 1 号用户指派为『站长』
         $user = User::find(1);
+        $user->assignRole('Founder');
         $user->name = 'Sylar';
         $user->email = 'sylar@qq.com';
         $user->avatar = 'https://iocaffcdn.phphub.org/uploads/images/201710/14/1/ZqM7iaP4CR.png';
         $user->save();
+
+        // 将 2 号用户指派为『管理员』
+        $user = User::find(2);
+        $user->assignRole('Maintainer');
 
     }
 }
