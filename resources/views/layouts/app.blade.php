@@ -35,3 +35,7 @@
   @yield('scripts')
 </body>
 </html>
+
+@if(app()->isLocal())
+  @include('sudosu::user-selector')
+@endif
