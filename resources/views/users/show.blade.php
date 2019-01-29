@@ -19,7 +19,7 @@
           <h5><strong>最后活跃</strong></h5>
           <p title="{{  $user->last_actived_at }}">{{ $user->last_actived_at->diffForHumans() }}</p>
           <hr>
-          <h5><strong>我的金币</strong></h5>
+          <h5><strong>金币余额</strong></h5>
           <p title="{{  $user->money }}">{{ $user->money }}金币 ( {{ $user->money / 10 }} 元 )</p>
         </div>
       </div>

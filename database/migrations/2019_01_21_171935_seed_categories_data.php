@@ -16,7 +16,7 @@ class SeedCategoriesData extends Migration
         //
         $categroies = [
             [
-                'name'        => '图区',
+                'name'        => '图片区',
                 'description' => '每日新图',
             ],
             [
@@ -24,7 +24,7 @@ class SeedCategoriesData extends Migration
                 'description' => '短视频在线',
             ],
             [
-                'name'        => 'T台',
+                'name'        => 'T台区',
                 'description' => '网友晒贴',
             ],
             [
