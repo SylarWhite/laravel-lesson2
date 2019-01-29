@@ -31,8 +31,10 @@ class TopicsController extends Controller
         if(! empty($topic->slug) && $topic->slug != $request->slug){
             return redirect($topic->link(),301);
         }
-
-        $showPremium = $topic->buyers()->where('id',\Auth::id())->exists();
+        $showPremium = false;
+        if($topic->price == 0 || $topic->user_id == \Auth::id() || $topic->buyers()->where('id',\Auth::id())->exists() || \Auth::user()->hasRole('Founder')){
+            $showPremium = true;
+        }
 
         return view('topics.show', compact('topic','showPremium'));
     }

@@ -26,7 +26,7 @@ class UsersTableSeeder extends Seeder
             'https://iocaffcdn.phphub.org/uploads/images/201710/14/1/NDnzMutoxX.png',
         ];
 
-        $users = factory(User::class)->times(1)
+        $users = factory(User::class)->times(2)
             ->make()->each(function ($user,$index) use ($faker, $avatars){
                 $user->avatar = $faker->randomElement($avatars);
             });
@@ -43,8 +43,12 @@ class UsersTableSeeder extends Seeder
         $user->save();
 
         // 将 2 号用户指派为『管理员』
-//        $user = User::find(2);
-//        $user->assignRole('Maintainer');
+        $user = User::find(2);
+        $user->assignRole('Maintainer');
+        $user->name = 'admin';
+        $user->email = 'admin@qq.com';
+        $user->avatar = 'https://iocaffcdn.phphub.org/uploads/images/201710/14/1/ZqM7iaP4CR.png';
+        $user->save();
 
     }
 }

@@ -66,9 +66,8 @@
               @guest
                 <a href="{{ route('login') }}" class="btn btn-outline-info btn-block" disabled>登陆后可观看剩余内容</a>
               @else
-                @if($showPremium || $topic->price == 0)
+                @if($showPremium)
                   {!! $topic->premium !!}
-
                 @elseif(\Auth::user()->money >= $topic->price)
                   <form action="{{ route('topics.premium',$topic->id) }}" method="post">
                     {{ csrf_field() }}
