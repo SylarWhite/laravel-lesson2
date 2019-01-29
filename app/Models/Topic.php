@@ -18,7 +18,7 @@ class Topic extends Model
 
     public function buyers()
     {
-        return $this->belongsToMany(User::class,'user_topic');
+        return $this->belongsToMany(User::class,'user_topic')->withTimestamps();
     }
 
     public function premiumTopic()

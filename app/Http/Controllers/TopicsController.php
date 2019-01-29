@@ -20,7 +20,7 @@ class TopicsController extends Controller
 
 	public function index(Request $request, Topic $topic,User $user, Link $link)
 	{
-		$topics = Topic::withOrder($request->order)->paginate(6);
+		$topics = Topic::query()->whereNotIn('category_id',[4])->withOrder($request->order)->paginate(8);
 		$active_users = $user->getActiveUsers();
 		$links = $link->getAllCached();
 		return view('topics.index', compact('topics','active_users','links'));
@@ -31,7 +31,9 @@ class TopicsController extends Controller
         if(! empty($topic->slug) && $topic->slug != $request->slug){
             return redirect($topic->link(),301);
         }
+
         $showPremium = $topic->buyers()->where('id',\Auth::id())->exists();
+
         return view('topics.show', compact('topic','showPremium'));
     }
 

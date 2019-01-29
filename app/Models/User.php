@@ -57,7 +57,7 @@ class User extends Authenticatable implements MustVerifyEmailContract
 
     public function bought()
     {
-        return $this->belongsToMany(Topic::class,'user_topic');
+        return $this->belongsToMany(Topic::class,'user_topic')->withTimestamps();
     }
 
     public function isAuthorOf($model)

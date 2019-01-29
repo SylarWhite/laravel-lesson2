@@ -22,25 +22,31 @@
         <li class="nav-item {{ category_nav_active(3) }}">
           <a href="{{ route('categories.show',3) }}" class="nav-link">T台区</a>
         </li>
-        <li class="nav-item {{ category_nav_active(4) }}">
-          <a href="{{ route('categories.show',4) }}" class="nav-link">认证区</a>
-        </li>
+        @can('verified')
+          <li class="nav-item {{ category_nav_active(4) }}">
+            <a href="{{ route('categories.show',4) }}" class="nav-link">认证区</a>
+          </li>
+          @else
+          <li class="nav-item {{ category_nav_active(4) }}">
+            <a onclick="alert('加QQ 123456 认证后可以访问此版块!');" class="nav-link" disabled="true">认证区</a>
+          </li>
+        @endcan
       </ul>
       <ul class="navbar-nav navbar-right">
         @guest
-        <li class="nav-item"><a href="{{ route('login') }}" class="nav-link">登陆</a></li>
-        <li class="nav-item"><a href="{{ route('register') }}" class="nav-link">注册</a></li>
-          @else
+          <li class="nav-item"><a href="{{ route('login') }}" class="nav-link">登陆</a></li>
+          <li class="nav-item"><a href="{{ route('register') }}" class="nav-link">注册</a></li>
+        @else
           <li class="nav-item">
             <a href="{{ route('topics.create') }}" class="nav-link mt-1 mr-3 font-weight-bold"><i class="fa fa-plus"></i></a>
           </li>
-        
-        <li class="nav-item notification-badge">
-          <a href="{{ route('notifications.index') }}" class="nav-link mr-3 badge badge-pill badge-{{ \Auth::user()->notification_count > 0 ? 'hint' : 'secondary' }}">
-            {{ \Auth::user()->notification_count }}
-          </a>
-        </li>
-        
+
+          <li class="nav-item notification-badge">
+            <a href="{{ route('notifications.index') }}" class="nav-link mr-3 badge badge-pill badge-{{ \Auth::user()->notification_count > 0 ? 'hint' : 'secondary' }}">
+              {{ \Auth::user()->notification_count }}
+            </a>
+          </li>
+
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <img src="{{ Auth::user()->avatar }}" class="img-responsive img-circle" width="30px" height="30px">

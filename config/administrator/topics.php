@@ -38,6 +38,15 @@ return [
         'reply_count' => [
             'title'    => '评论',
         ],
+        'price' => [
+            'title'    => '价格',
+        ],
+        'buyer_count' => [
+            'title'    => '买家统计',
+        ],
+        'amount' => [
+            'title'    => '已盈利',
+        ],
         'operation' => [
             'title'  => '管理',
             'sortable' => false,
@@ -71,6 +80,15 @@ return [
         ],
         'reply_count' => [
             'title'    => '评论',
+        ],
+        'price' => [
+            'title'    => '价格',
+        ],
+        'buyer_count' => [
+            'title'    => '买家统计',
+        ],
+        'amount' => [
+            'title'    => '已盈利',
         ],
         'view_count' => [
             'title'    => '查看',

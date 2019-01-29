@@ -24,6 +24,7 @@ class SeedRolesAndPermissionsData extends Migration
         Permission::create(['name'=>'manage_contents']);
         Permission::create(['name'=>'manage_users']);
         Permission::create(['name'=>'edit_settings']);
+        Permission::create(['name'=>'verified']);
 
         // 创建站长角色，并赋予权限
         $founder = Role::create(['name'=>'Founder']);
@@ -34,6 +35,10 @@ class SeedRolesAndPermissionsData extends Migration
         // 创建管理员角色，并赋予权限
         $maintainer = Role::create(['name'=>'Maintainer']);
         $maintainer->givePermissionTo('manage_contents');
+
+        // 创建认证会员角色，并赋予权限
+        $verified = Role::create(['name'=>'Verified']);
+        $verified->givePermissionTo('verified');
     }
 
     /**
