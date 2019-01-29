@@ -42,6 +42,8 @@ class Topic extends Model
                 $user->save();
                 $this->buyers()->sync([$user->id]);
                 $this->save();
+                $this->user->money += $earn;
+                $this->push();
                 $records->save();
                 \DB::commit();
                 return true;

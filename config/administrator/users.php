@@ -55,7 +55,6 @@ return [
         'last_actived_at' => [
             'title' => '最后活跃',
         ],
-
         'operation' => [
             'title'  => '管理',
             'sortable' => false,
@@ -88,9 +87,7 @@ return [
             // 图片上传必须设置图片存放路径
             'location' => public_path() . '/uploads/images/avatars/',
         ],
-        'last_actived_at' => [
-            'title' => '最后活跃',
-        ],
+
         'roles' => [
             'title'      => '用户角色',
 
