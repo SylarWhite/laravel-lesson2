@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable()->default(\Carbon\Carbon::now()->toDateTimeString());
-            $table->string('password')->default('$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm');
+            $table->string('password')->default('$2y$10$bYd5eFg.vdrw.dqdwhiPEuanlWVHdbheUIo0hkT4zJaEa6ahEmlNG');
             $table->rememberToken();
             $table->timestamps();
         });

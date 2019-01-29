@@ -32,7 +32,7 @@ class TopicsController extends Controller
             return redirect($topic->link(),301);
         }
         $showPremium = false;
-        if($topic->price == 0 || $topic->user_id == \Auth::id() || $topic->buyers()->where('id',\Auth::id())->exists() || \Auth::user()->hasRole('Founder')){
+        if($topic->price == 0 || $topic->user_id == \Auth::id() || $topic->buyers()->where('id',\Auth::id())->exists()){
             $showPremium = true;
         }
 
