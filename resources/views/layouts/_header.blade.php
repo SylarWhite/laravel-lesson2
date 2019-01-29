@@ -28,7 +28,7 @@
           </li>
           @else
           <li class="nav-item {{ category_nav_active(4) }}">
-            <a href="javascript:void(0);" onclick="alert('加QQ 123456 认证后可以访问此版块!');" class="nav-link" disabled="true">认证区</a>
+            <a href="javascript:void(0);" onclick="alert('加QQ {{ env('QQ',123456) }} 认证后可以访问此版块!');" class="nav-link" disabled="true">认证区</a>
           </li>
         @endcan
       </ul>
