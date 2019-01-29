@@ -4,7 +4,7 @@ namespace App\Models;
 
 class Topic extends Model
 {
-    protected $fillable = ['title', 'body', 'category_id', 'excerpt', 'slug'];
+    protected $fillable = ['title', 'body', 'category_id', 'excerpt', 'slug','premium','price'];
 
     public function replies()
     {
@@ -14,6 +14,28 @@ class Topic extends Model
     public function link($params=[])
     {
         return route('topics.show',array_merge([$this->id,$this->slug],$params));
+    }
+
+    public function buyers()
+    {
+        return $this->belongsToMany(User::class,'user_topic');
+    }
+
+    public function premiumTopic()
+    {
+        $user = \Auth::user();
+        $balance = $user->money - $this->price;
+        if($balance >= 0){
+            $user->money = $balance;
+            $user->save();
+
+            $this->amount += intval($this->price*0.4);
+            $this->buyer_count += 1;
+            $this->save();
+            $this->buyers()->sync([$user->id]);
+            return true;
+        }
+        return false;
     }
 
     public function category()

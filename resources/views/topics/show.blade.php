@@ -21,6 +21,19 @@
               </a>
             </div>
           </div>
+
+          <div class="card-body">
+            <div align="text-center alert-primary">
+              余额：{{ $topic->user->money }}
+              <br>
+              发贴：
+              <a href="{{ route('users.show',$topic->user->id) }}">
+                {{ $topic->user->topics->count() }}
+              </a>
+
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
@@ -38,11 +51,33 @@
             ⋅
             <i class="far fa-comment"></i>
             {{ $topic->reply_count }}
+            ⋅
+            <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
+            {{ $topic->buyer_count }}
+            ⋅
+            <i class="fa fa-money" aria-hidden="true"></i>
+            {{ $topic->amount }}
           </div>
 
           <div class="topic-body mt-4 mb-4">
             {!! $topic->body !!}
+            <hr>
+            <div>
+              @if($showPremium || $topic->price == 0)
+                {!! $topic->premium !!}
+              @elseif(\Auth::user()->money >= $topic->price)
+                <form action="{{ route('topics.premium',$topic->id) }}" method="post">
+                  {{ csrf_field() }}
+                  <button type="submit"
+                          class="btn btn-outline-danger btn-block" >购买付费内容 ￥{{ $topic->price }}</button>
+                </form>
+              @else
+                <button type="button"
+                        class="btn btn-outline-dark btn-block" disabled>购买付费内容 ￥{{ $topic->price }} 您的金币不足</button>
+              @endif
+            </div>
           </div>
+
           @can('update',$topic)
             <div class="operate">
               <hr>

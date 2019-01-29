@@ -24,5 +24,6 @@ $factory->define(App\Models\User::class, function (Faker $faker) {
         'introduction'=>$faker->sentence(),
         'created_at'=>$date,
         'updated_at'=>$date,
+        'money'     =>random_int(0,100),
     ];
 });

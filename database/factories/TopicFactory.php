@@ -13,6 +13,8 @@ $factory->define(App\Models\Topic::class, function (Faker $faker) {
         'title' => $sentence,
         'body'  => $faker->text(),
         'excerpt'   =>  $sentence,
+        'premium'   =>  $faker->text(),
+        'price'     =>  random_int(0,5),
         'created_at'    =>  $created_at,
         'updated_at'    =>  $updated_at,
     ];

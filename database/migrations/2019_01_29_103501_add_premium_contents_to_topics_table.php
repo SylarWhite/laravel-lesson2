@@ -14,8 +14,10 @@ class AddPremiumContentsToTopicsTable extends Migration
     public function up()
     {
         Schema::table('topics', function (Blueprint $table) {
-            $table->longText('premium')->nullable();
-            $table->integer('price')->default(0);
+            $table->longText('premium')->nullable()->comment('付费内容');
+            $table->integer('price')->default(0)->comment('价格');
+            $table->integer('buyer_count')->default(0)->comment('买家统计');
+            $table->integer('amount')->default(0)->comment('已盈利');
         });
     }
 
@@ -29,6 +31,8 @@ class AddPremiumContentsToTopicsTable extends Migration
         Schema::table('topics', function (Blueprint $table) {
             $table->dropColumn('premium');
             $table->dropColumn('price');
+            $table->dropColumn('buyer_count');
+            $table->dropColumn('amount');
         });
     }
 }
