@@ -32,19 +32,29 @@ class Topic extends Model
                 $earn = $user->hasRole('Verified') ? intval($this->price*0.75) :intval($this->price*0.4);
                 $this->amount += $earn;
                 $this->buyer_count += 1;
+
                 $records = new Record();
                 $records->user_id = \Auth::id();
                 $records->money = $this->price;
                 $records->type = 3;
                 $records->topic_id = $this->id;
                 $records->status = 1;
+                $records->save();
+
+                $records = new Record();
+                $records->user_id = $this->user_id;
+                $records->money = $earn;
+                $records->type = 1;
+                $records->topic_id = $this->id;
+                $records->status = 1;
+                $records->save();
 
                 $user->save();
                 $this->buyers()->sync([$user->id]);
                 $this->save();
                 $this->user->money += $earn;
                 $this->push();
-                $records->save();
+
                 \DB::commit();
                 return true;
             }catch (\Exception $exception){
