@@ -63,18 +63,22 @@
             {!! $topic->body !!}
             <hr>
             <div>
-              @if($showPremium || $topic->price == 0)
-                {!! $topic->premium !!}
-              @elseif(\Auth::user()->money >= $topic->price)
-                <form action="{{ route('topics.premium',$topic->id) }}" method="post">
-                  {{ csrf_field() }}
-                  <button type="submit"
-                          class="btn btn-outline-danger btn-block" >购买付费内容 ￥{{ $topic->price }}</button>
-                </form>
+              @guest
+                <a href="{{ route('login') }}" class="btn btn-outline-info btn-block" disabled>登陆后可观看剩余内容</a>
               @else
-                <button type="button"
-                        class="btn btn-outline-dark btn-block" disabled>购买付费内容 ￥{{ $topic->price }} 您的金币不足</button>
-              @endif
+                @if($showPremium || $topic->price == 0)
+                  {!! $topic->premium !!}
+
+                @elseif(\Auth::user()->money >= $topic->price)
+                  <form action="{{ route('topics.premium',$topic->id) }}" method="post">
+                    {{ csrf_field() }}
+                    <button type="submit"
+                            class="btn btn-outline-danger btn-block" >购买付费内容 ￥{{ $topic->price }}</button>
+                  </form>
+                @else
+                  <button type="button"  class="btn btn-outline-dark btn-block" disabled>购买付费内容 ￥{{ $topic->price }} 您的金币不足</button>
+                @endif
+              @endguest
             </div>
           </div>
 

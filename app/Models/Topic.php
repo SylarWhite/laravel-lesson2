@@ -26,20 +26,29 @@ class Topic extends Model
         $user = \Auth::user();
         $balance = $user->money - $this->price;
         if($balance >= 0){
-            $user->money = $balance;
-            $user->save();
+            \DB::beginTransaction();
+            try{
+                $user->money = $balance;
+                $earn = $user->hasRole('Verified') ? intval($this->price*0.75) :intval($this->price*0.4);
+                $this->amount += $earn;
+                $this->buyer_count += 1;
+                $records = new Record();
+                $records->user_id = \Auth::id();
+                $records->money = $this->price;
+                $records->type = 3;
+                $records->topic_id = $this->id;
+                $records->status = 1;
 
-            if($user->hasRole('Verified')){
-                $earn = intval($this->price*0.75);
-            }else{
-                $earn = intval($this->price*0.4);
+                $user->save();
+                $this->buyers()->sync([$user->id]);
+                $this->save();
+                $records->save();
+                \DB::commit();
+                return true;
+            }catch (\Exception $exception){
+                \DB::rollback();
+                return false;
             }
-
-            $this->amount += $earn;
-            $this->buyer_count += 1;
-            $this->save();
-            $this->buyers()->sync([$user->id]);
-            return true;
         }
         return false;
     }

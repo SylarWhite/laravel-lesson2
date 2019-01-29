@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-loght bg-loght navbar-static-top">
   <div class="container">
     <a href="{{ url('/') }}" class="navbar-brand">
-      NOBODY HERE
+      <span style="color: #e27575;font-size: 18px;">❤</span> SECRET HUB <span style="color: #e27575;font-size: 18px;">❤</span>
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -28,7 +28,7 @@
           </li>
           @else
           <li class="nav-item {{ category_nav_active(4) }}">
-            <a onclick="alert('加QQ 123456 认证后可以访问此版块!');" class="nav-link" disabled="true">认证区</a>
+            <a href="javascript:void(0);" onclick="alert('加QQ 123456 认证后可以访问此版块!');" class="nav-link" disabled="true">认证区</a>
           </li>
         @endcan
       </ul>
