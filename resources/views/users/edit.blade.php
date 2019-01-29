@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title',编辑个人资料)
+
 @section('content')
 
   <div class="container">

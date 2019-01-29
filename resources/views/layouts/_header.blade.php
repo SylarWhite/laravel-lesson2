@@ -22,7 +22,7 @@
         <li class="nav-item {{ category_nav_active(3) }}">
           <a href="{{ route('categories.show',3) }}" class="nav-link">T台区</a>
         </li>
-        @can('verified')
+        @can('Verified')
           <li class="nav-item {{ category_nav_active(4) }}">
             <a href="{{ route('categories.show',4) }}" class="nav-link">认证区</a>
           </li>
@@ -44,6 +44,11 @@
           <li class="nav-item notification-badge">
             <a href="{{ route('notifications.index') }}" class="nav-link mr-3 badge badge-pill badge-{{ \Auth::user()->notification_count > 0 ? 'hint' : 'secondary' }}">
               {{ \Auth::user()->notification_count }}
+            </a>
+          </li>
+          <li class="nav-item money-badge">
+            <a href="{{ route('records.index') }}" class="nav-link mr-1 mt-1" style="color: black;">
+              <span class="badge badge-warning">{{ \Auth::user()->money }}金币</span>
             </a>
           </li>
 
