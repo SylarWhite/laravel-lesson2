@@ -25,6 +25,8 @@ class TopicObserver
     {
         // Xss 过滤
         $topic->body = clean($topic->body,'user_topic_body');
+
+        $topic->premium = clean($topic->premium,'user_topic_body');
         // 摘要
         $topic->excerpt = make_excerpt($topic->body);
 

@@ -14,7 +14,7 @@ class AddMoneyToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->integer('money')->default(0)->comment('金币');
+            $table->integer('money')->default(10)->comment('金币');
         });
     }
 

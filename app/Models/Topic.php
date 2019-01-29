@@ -29,7 +29,13 @@ class Topic extends Model
             $user->money = $balance;
             $user->save();
 
-            $this->amount += intval($this->price*0.4);
+            if($user->hasRole('Verified')){
+                $earn = intval($this->price*0.75);
+            }else{
+                $earn = intval($this->price*0.4);
+            }
+
+            $this->amount += $earn;
             $this->buyer_count += 1;
             $this->save();
             $this->buyers()->sync([$user->id]);
